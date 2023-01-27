@@ -4,10 +4,7 @@ import requests
 import snowflake.connector
 from urllib.error import URLError
 
-try:
-  my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-except Exception as E:
-  streamlit.text(E)
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
 my_data_row = my_cur.fetchone()
